@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <!-- 写法错误 -->
+      <!-- <cpn :cInfo="info"></cpn> -->
+
+      <cpn :c-info="info" :child-my-message="message"></cpn>
+    </div>
+
+    <template id="cpn">
+      <div>
+        <h2>{{cInfo}}</h2>
+        <h2>{{childMyMessage}}</h2>
+      </div>
+    </template>
+
+    <script src="../js/vue.js"></script>
+    <script>
+      // 父传子：props
+      const cpn = {
+        template: "#cpn",
+        props: {
+          cInfo: {
+            type: Object,
+            default() {
+              return {};
+            }
+          },
+          childMyMessage: {
+            type: String,
+            default: "",
+          },
+        },
+        data() {
+          return {};
+        },
+      };
+
+      // Vue实例对象，可以看作root组件
+      const app = new Vue({
+        el: "#app",
+        data: {
+          info: {
+            name: "erin",
+            age: 24,
+            height: 1.76
+          },
+          message: "Hi",
+        },
+        computed: {},
+        methods: {},
+        components: {
+          // 局部组件
+          cpn, // 变量的增强写法
+        },
+      });
+    </script>
+  </body>
+</html>

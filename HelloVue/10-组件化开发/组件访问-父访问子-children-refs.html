@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <cpn></cpn>
+      <cpn></cpn>
+      <cpn ref="aa"></cpn>
+      <button @click="btnClick">按钮</button>
+    </div>
+
+    <template id="cpn">
+      <div>子组件</div>
+    </template>
+
+    <script src="../js/vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: "#app",
+        data: {},
+        computed: {},
+        methods: {
+          btnClick() {
+            // 1.$children的使用，但以下标的方式取得子组件对象的方式不太好，因为可能父组件中会增加新的子组件
+            // console.log(this.$children);
+            // for (let c of this.$children) {
+            //   console.log(c.name);
+            //   c.showMessage();
+            // }
+
+            // 2.$refs，对象类型，默认是一个空对象
+            console.log(this.$refs); // 控制台打印：{aa: VueComponent}
+            console.log(this.$refs.aa); // 控制台打印子组件对象： VueComponent
+          },
+        },
+        components: {
+          cpn: {
+            template: "#cpn",
+            props: {},
+            methods: {
+              showMessage() {
+                console.log("showMesage");
+              },
+            },
+            data() {
+              return {
+                name: "子组件的name",
+              };
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

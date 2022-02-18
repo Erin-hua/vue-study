@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <!-- rel属性指示被链接的文档是一个样式表, href是其路径 -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div v-if="books.length">
+        <table>
+          <!-- thead设置表头 -->
+          <thead>
+            <!-- tr指定表行标签，代表一行 -->
+            <tr>
+              <!-- th设置表头内容 -->
+              <th></th>
+              <th>书籍名称</th>
+              <th>出版日期</th>
+              <th>价格</th>
+              <th>购买数量</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <!-- tbody设置表内容 -->
+          <tbody>
+            <tr v-for="(item, index) in books">
+              <!-- 遍历对象可以以下面的方式遍历 -->
+              <!-- <td v-for="value in item">{{value}}</td> -->
+              <td>{{item.id}}</td>
+              <td>{{item.name}}</td>
+              <td>{{item.date}}</td>
+              <!-- <td>{{'￥' + item.price.toFixed(2)}}</td> -->
+              <!-- <td>￥{{item.price.toFixed(2)}}</td> -->
+              <!-- <td>{{getFinalPrice(item.price)}}</td> -->
+              <td>{{item.price | showPrice}}</td>
+              <td>
+                <!-- disabled属性对应为true表示案例会变灰，不能点击它进行交互，绑定在其上的方法也不会被调用 -->
+                <button
+                  @click="decrement(index)"
+                  v-bind:disabled="item.count <= 1"
+                >
+                  -
+                </button>
+                {{item.count}}
+                <button @click="increment(index)">+</button>
+              </td>
+              <td>
+                <button @click="removeHandle">移除</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <h2>总价格：{{totalPrice | showPrice}}</h2>
+      </div>
+      <h2 v-else>购物车为空</h2>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

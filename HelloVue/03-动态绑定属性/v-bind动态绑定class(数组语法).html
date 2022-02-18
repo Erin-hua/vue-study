@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>v-bind-class02</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- ‘active’会被当作字符串进行解析，查找style中是否有对应样式 -->
+      <!-- <h2 class="title" :class="['active', 'line']">{{message}}</h2> -->
+      <!-- active会被当作变量解析 -->
+      <h2 class="title" :class="[active, line]">{{message}}</h2>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script> 
+      const app = new Vue({
+        el: "#app",
+        data: {
+          message: "Hello",
+          active: "aaaaa", // 如果是从服务器请求过来的，v-bind为class属性绑定数组效果比较好
+          line: "bbbb",
+        },
+        methods: {
+          getClasses: function () {
+            return [this.active, this.line];
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

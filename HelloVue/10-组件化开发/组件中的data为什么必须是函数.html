@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <cpn></cpn>
+      <cpn></cpn>
+    </div>
+
+    <template id="cpn">
+      <div>
+        <h2>当前计数：{{counter}}</h2>
+        <button @click="increment">+</button>
+        <button @click="decrement">-</button>
+      </div>
+    </template>
+
+    <script src="../js/vue.js"></script>
+    <script>
+      // 1.注册全局组件
+      Vue.component("cpn", {
+        template: "#cpn",
+        data() { // 因为每次调用data函数返回的对象是不一样的，所以每个组件实例对象的data是互相独立的
+          return {
+            counter: 0,
+          };
+        },
+        methods: {
+          increment() {
+            this.counter++;
+          },
+          decrement() {
+            this.counter--;
+          },
+        },
+      });
+
+      // Vue实例对象，可以看作root组件
+      const app = new Vue({
+        el: "#app",
+        data: {
+          message: "Hello",
+        },
+        computed: {},
+        methods: {}, // 注册局部组件的语法糖写法
+        components: {},
+      });
+    </script>
+  </body>
+</html>

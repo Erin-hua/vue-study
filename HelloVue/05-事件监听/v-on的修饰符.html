@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <div @click="divClick">
+        <!-- .stop调用event.stopPropagation()，阻止冒泡，即外部的点击事件等 -->
+        <button @click.stop="btnClick">按钮</button>
+      </div>
+
+      <form action="baidu">
+        <!-- .prevent调用event.preventDefault()，阻止对应组件的默认行为，点击下面的按钮就只会控制台打印语句，不会提交 -->
+        <input type="submit" value="提交" @click.prevent="submitClick" />
+      </form>
+
+      <!-- .{keyCode|keyAlias}只当事件是从特定键触发时才触发回调，keyCode是键对应的代码 -->
+      <!-- 监听某个键盘的键帽一般事件是keyup而不是keydown，keyup.enter监听的是enter键 -->
+      <input type="text" @keyup.enter="keyUp">
+
+      <!-- .native监听组件根元素的原生事件，自定义组件有关的 -->
+      
+      <!-- .once修饰符的使用，只触发一次回调 -->
+      <button @click.once="btn2Click">按钮2</button>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: "#app",
+        data: {},
+        methods: {
+          btnClick() {
+            console.log("btn1Click");
+          },
+          divClick(abc) {
+            console.log("divClick");
+          },
+          submitClick() {
+            console.log("submitClick");
+          },
+          keyUp() {
+            console.log("keyUp");
+          },
+          btn2Click() {
+              console.log("btn2Click");
+          }
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+
+  <body>
+    <div id="app"></div>
+    <script src="../js/vue.js"></script>
+    <script>
+      // const obj = new Object()
+      // const obj = {}; // {}就是对象的字面量
+
+      // ES5写法
+      // const obj = {
+      //   name: "erin",
+      //   age: 20,
+      //   run: function () {
+      //     console.log("在奔跑");
+      //   },
+      //   eat: function () {
+      //     console.log("在吃东西");
+      //   },
+      // };
+
+      // 1.属性的增强写法
+      const name = "erin";
+      const age = 23;
+      const height = 1.98;
+
+      // ES5的写法
+      // const obj = {
+      //   name: name,
+      //   age: age,
+      //   height: height
+      // }
+
+      // 以下的name可以是变量也可以是常量，直接放到对象obj中
+      const obj = {
+        name,
+        age,
+        height,
+      };
+      console.log(obj);
+
+      // 2.函数的增强写法
+      // ES5写法
+      // const obj = {
+      //   run: function () {
+      //   },
+      //   eat: function () {
+      //   },
+      // };
+
+      // ES6写法
+      const obj = {
+          run(){
+
+          },
+          eat(){
+              
+          }
+      }
+    </script>
+  </body>
+</html>

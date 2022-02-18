@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <!-- 3.第一个是全局组件，第二个是局部组件 -->
+      <cpn1></cpn1>
+      <cpn2></cpn2>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+      // 1.创建组件构造器
+      // const cpnC = Vue.extend({
+      //   template: `
+      //     <div>
+      //       <h2>标题</h2>
+      //       <p>内容一</p>
+      //       <p>内容二</p>
+      //     </div>`,
+      // });
+
+      // 2.注册全局组件(语法糖写法)
+      Vue.component("cpn1", {
+        template: ` 
+          <div>
+            <h2>标题</h2>
+            <p>内容一</p>
+            <p>内容二</p>
+          </div>`,
+      });
+
+      // Vue实例对象，可以看作root组件
+      const app = new Vue({
+        el: "#app",
+        data: {
+          message: "Hello",
+        },
+        computed: {},
+        methods: {}, // 注册局部组件的语法糖写法
+        components: {
+          cpn2: {
+            template: ` 
+              <div>
+                <h2>标题2</h2>
+                <p>内容三</p>
+                <p>内容四</p>
+              </div>`,
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

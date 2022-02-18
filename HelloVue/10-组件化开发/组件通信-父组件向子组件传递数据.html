@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <!-- 1.props的值是字符串数组的形式：用v-bind才能把movies当作父组件中的变量赋给cmovies -->
+      <!-- <cpn v-bind:cmovies="movies" :cmessage="message"></cpn> -->
+
+
+      <cpn :cmessage="message" :cmovies="movies"></cpn>
+    </div>
+
+    <template id="cpn">
+      <div>
+        <ul>
+          <li v-for="item in cmovies">{{item}}</li>
+        </ul>
+        <h2>{{cmessage}}</h2>
+      </div>
+    </template>
+
+    <script src="../js/vue.js"></script>
+    <script>
+      // 父传子：props
+      const cpn = {
+        template: "#cpn",
+        //props: ["cmovies", "cmessage"],
+        props: {
+          //1.给变量指定类型，进行类型限制
+          // cmovies: Array,
+          // cmessage: String,
+
+          // 2.提供一些默认值，以及必传值
+          cmessage: {
+            type: String,
+            default: "svgb",
+            required: true // 表示在使用子组件时必须向其传递cmessage要绑定的数据
+          },
+          // 类型是对象或数组时，默认值必须是一个函数
+          cmovies: {
+            type: Array,
+            //default: [], // vue2.5.17以下该写法不会错
+            default() {
+              return [];
+            }
+          },
+        },
+        data() {
+          return {};
+        },
+      };
+
+      // Vue实例对象，可以看作root组件
+      const app = new Vue({
+        el: "#app",
+        data: {
+          message: "Hello",
+          movies: ["复仇者联盟", "美国队长", "钢铁侠"],
+        },
+        computed: {},
+        methods: {},
+        components: {
+          // 局部组件
+          cpn, // 变量的增强写法
+        },
+      });
+    </script>
+  </body>
+</html>

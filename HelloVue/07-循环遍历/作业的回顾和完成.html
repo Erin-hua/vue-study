@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <style>
+      .active {
+        color: red;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- 设置点击某个条目它就会变成红色，再点就变回黑色 -->
+    <div id="app">
+      <ul>
+        <li v-for="(item, index) in movies" @click="liClick(index)" :class="{active: currentIndex===index}">{{item}}</li>
+      </ul>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: "#app",
+        data: {
+          movies: ["复仇者联盟", "无敌浩克", "钢铁侠", "美国队长"],
+          currentIndex: 0, // 记录当前哪条准备显示为红色
+        },
+        computed: {},
+        methods: {
+          liClick(index) {
+            this.currentIndex = index;
+          }
+        },
+      });
+    </script>
+  </body>
+</html>

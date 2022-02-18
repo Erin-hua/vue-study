@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>v-bind-作业</title>
+    <style>
+      .active {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 作业需求：点击列表中的哪一项，那么该项的文字变成红色 -->
+    <div id="app">
+      <ul>
+        <!-- 有多个li需要遍历就在li标签中加v-for命令 -->
+        <li v-for="(m, index) in movies" @click="nowIndex=index" :class="{active: nowIndex===index}">
+          {{index}}-{{m}}
+        </li>
+      </ul>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: "#app",
+        data: {
+          movies: ["钢铁侠", "美国队长", "复仇者联盟", "海王"],
+          nowIndex: -1,
+        },
+        methods: {
+        },
+      });
+    </script>
+  </body>
+</html>

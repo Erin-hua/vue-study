@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+
+  <body>
+    <div id="app">
+      <cpn></cpn>
+
+      <!-- <cpn>
+          <span>Javascript-</span>
+          <span>C++-</span>
+      </cpn> -->
+
+      <!-- 目的是获取子组件中的pLanguages
+           vue2.5.x以下要用template才能父组件获取子组件中的数据 -->
+      <cpn>
+        <template slot-scope="slot">
+          <!-- <span v-for="item in slot.data">{{item}} - </span> -->
+          <!-- join方法将数组转换成字符串 -->
+          <span>{{slot.abc.join(" - ")}}</span> 
+        </template>
+      </cpn>
+
+      <cpn>
+        <template slot-scope="slot">
+          <!-- <span v-for="item in slot.data">{{item}} * </span> -->
+          <span>{{slot.abc.join(" * ")}}</span>
+        </template>
+      </cpn>
+    </div>
+
+    <template id="cpn">
+      <div>
+        <!-- <slot :data="pLanguages"> -->
+        <slot :abc="pLanguages">
+          <ul>
+            <li v-for="item in pLanguages">{{item}}</li>
+          </ul>
+        </slot>
+      </div>
+    </template>
+
+    <script src="../js/vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: "#app",
+        data: {
+          message: "Hello",
+        },
+        computed: {},
+        components: {
+          cpn: {
+            template: "#cpn",
+            data() {
+              return {
+                pLanguages: [
+                  "Java",
+                  "JavaScript",
+                  "C++",
+                  "C#",
+                  "Python",
+                  "Go",
+                  "Swift",
+                ],
+              };
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

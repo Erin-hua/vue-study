@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>v-bind</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- v-bind表明src属性是需要动态绑定的, imgURL就不再是一个字符串，而是一个在data中的变量 -->
+      <img v-bind:src="imgURL" alt="" />
+      <a v-bind:src="aHref">百度一下</a>
+      <!-- v-bind的语法糖写法，正式开发使用该写法 -->
+      <img :src="imgURL" alt="" />
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: "#app",
+        data: {
+          message: "Hello",
+          imgURL:
+            "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimage.biaobaiju.com%2Fuploads%2F20180211%2F00%2F1518279643-oQTlAJHDYO.jpg&refer=http%3A%2F%2Fimage.biaobaiju.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1638796286&t=c07424f8269fd5a84932adfb34391660",
+          aHref: "http://www.baidu.com",
+        },
+        methods: {},
+      });
+    </script>
+  </body>
+</html>

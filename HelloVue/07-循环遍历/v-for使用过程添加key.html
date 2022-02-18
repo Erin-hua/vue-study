@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+
+  <body>
+    <!-- 在控制台输入app.letters.splice(2,2)会删除"C"和"D" -->
+    <!-- 在控制台输入app.letters.splice(2,0,"F")可以在"B"后插入"F" -->
+    <div id="app">
+      <ul>
+        <!-- 必须是:key="item"而不是"index"，因为index和item不会是一一对应的关系 -->
+        <li v-for="item in letters" :key="item">{{item}}</li>
+      </ul>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: "#app",
+        data: {
+          letters: ["A", "B", "C", "D", "E"],
+        },
+        computed: {},
+        methods: {},
+      });
+    </script>
+  </body>
+</html>
