@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <script>
+      // 什么时候使用箭头函数：把一个函数作为另外一个函数的参数的时候
+      // 在对象中定义函数时不需要用箭头函数的写法，直接用ES6的对象字面量增强写法即可
+      //   setTimeout(function () {
+      //     console.log(this); // Window
+      //   }, 1000);
+      //   setTimeout(() => {
+      //     console.log(this); // Window
+      //   }, 1000);
+
+      //   const obj = {
+      //     aaa() {
+      //       setTimeout(function () {
+      //         console.log(this); // Window
+      //       });
+
+      //       setTimeout(() => {
+      //         console.log(this); // obj对象
+      //       });
+      //     },
+      //   };
+      //   obj.aaa();
+
+      const obj = {
+        aaa() {
+          setTimeout(function () {
+            setTimeout(function () {
+              console.log(this); // Window
+            });
+            setTimeout(() => {
+              console.log(this); // Window
+            });
+          });
+
+          setTimeout(() => {
+            setTimeout(function () {
+              console.log(this); // Window
+            });
+            setTimeout(() => {
+              console.log(this); // aaa中的this，也就是obj对象
+            });
+          });
+        },
+      };
+      obj.aaa();
+    </script>
+  </body>
+</html>
