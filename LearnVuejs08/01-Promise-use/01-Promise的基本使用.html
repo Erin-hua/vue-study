@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <script>
+      // 1.使用setTimeout，以下操作是异步操作
+      //   setTimeout(() => {
+      //     console.log(Hello);
+      //   }, 1000)
+
+      // 2.promise就是对异步操作进行封装，要传入的参数 => 函数(resolve, reject)
+      // resolve，reject本身又是函数
+      // new Promise((resolve, reject) => {})
+      // 琏式编程
+      //   new Promise((resolve, reject) => {
+      //     // 1秒之后会回调函数() => {console.log(Hello);}
+      //     setTimeout(() => {
+      //       resolve(); // 内部如果调用了resolve函数，就会跳转到最外层的Promise对象接下来调用的then函数，then函数的参数也是一个函数
+      //     }, 1000);
+      //   }).then(() => {
+      //     console.log("Hello");
+      //     console.log("Hello");
+      //     console.log("Hello");
+
+      //     return new Promise((resolve, reject) => {
+      //       setTimeout(() => {
+      //         resolve();
+      //       }, 1000);
+      //     });
+      //   }).then(() => {
+      //     console.log("HelloVue");
+      //     console.log("HelloVue");
+      //     console.log("HelloVue");
+
+      //     return new Promise((resolve, reject) => {
+      //       setTimeout(() => {
+      //         resolve();
+      //       }, 1000)
+      //     })
+      //   }).then(() => {
+      //     console.log("HelloJava");
+      //     console.log("HelloJava");
+      //     console.log("HelloJava");
+      //   });
+
+      // 什么情况下会用到Promise？一般情况下是有异步操作时，使用Promise对象对这个异步操作进行封装
+      // new -> 构造函数（1.保存了一些状态信息 2.执行传入的函数）
+      // 在执行传入的回调函数时，会传入两个参数：resolve和reject，本身又是函数
+      // Promise会将网络请求代码和处理代码分离
+      new Promise((resolve, reject) => {
+        setTimeout(() => {
+          // 成功的时候调用resolve函数，然后调用then函数，resolve函数中的参数也会传到then函数中
+          // resolve("Hello");
+
+          // 失败的时候调用reject函数，然后调用catch函数，reject函数中的参数也会传到catch函数中
+          reject("error message")
+        }, 1000)
+      }).then((data) => {
+        console.log(data);
+        console.log(data);
+      }).catch((err) => {
+        console.log(err);
+        console.log(err);
+      });
+    </script>
+  </body>
+</html>

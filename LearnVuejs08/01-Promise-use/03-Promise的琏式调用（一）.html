@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <script>
+      new Promise((resolve, reject) => {
+        setTimeout(() => {
+          // 成功的时候调用resolve函数，然后调用then函数，resolve函数中的参数也会传到then函数中
+          // resolve("Hello");
+
+          // 失败的时候调用reject函数，然后调用catch函数，reject函数中的参数也会传到catch函数中
+          reject("error message")
+        }, 1000)
+      }).then((data) => {
+        console.log(data);
+        console.log(data);
+      }).catch((err) => {
+        console.log(err);
+        console.log(err);
+      });
+    </script>
+  </body>
+</html>

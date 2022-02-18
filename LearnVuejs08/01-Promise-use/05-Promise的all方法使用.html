@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <script>
+      Promise.all([
+        // jquery的写法
+        // new Promise((resolve, reject) => {
+        //   $.ajax({
+        //     url: "url1",
+        //     success: function(data) {
+        //       resolve(data);
+        //     }
+        //   })
+        // }),
+        // new Promise((resolve, reject) => {
+        //   $ajax({
+        //     url: "url2",
+        //     success: function(data) {
+        //       resolve(data);
+        //     }
+        //   })
+        // })
+
+        new Promise((resolve, reject) => {
+          setTimeout(() => {
+            resolve("result1")
+          }, 2000)
+        }),
+        new Promise((resolve, reject) => {
+          setTimeout(() => {  
+            reslove("result2")
+          }, 1000)
+        })
+      ]).then(results => { // 只有all方法参数中的所有Promise对象的异步操作都执行成功后才会执行then函数
+        // results[0], // 对应的是url1对应得到的数据
+        // results[1]  // 对应的是url2对应得到的数据
+        console.log(results);
+      })
+    </script>
+  </body>
+</html>

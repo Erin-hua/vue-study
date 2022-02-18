@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <script>
+      // 下面这种写法中，如果调用了resolve，就会调用then中的函数一；如果调用了reject，就会调用then中的函数二
+      //   new Promise((resolve, reject) => {
+      //     setTimeout(() => {
+      //       resolve("Hello");
+      //       reject("error message");
+      //     }, 1000)
+      //   }).then(函数一, 函数二)
+      new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve("Hello");
+          reject("error message");
+        }, 1000);
+      }).then(data => {
+        console.log(data);
+      },err => {
+        console.log(err);
+      });
+    </script>
+  </body>
+</html>
